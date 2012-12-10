@@ -1,4 +1,4 @@
 IPPC Static Files &amp; Templates
 ===
 
-- [Login page](login)
+- [Login page](http://st.ippc.int/login)
