@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Markdown Tutorial with js-markdown-extra : PHP-Markdown-extra compatible Javascript markdown syntax parser">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Markdown Tutorial with js-markdown-extra</title>
+
+    <script src="js-markdown-extra.js"></script>
+    <script src="jquery-1.8.2.min.js"></script>
+
+    <style>
+    body {background:#fafafa; font-family:helvetica, sans-serif; font-size:100%; line-height:1.5em; padding:1em;}
+    h1.mainheading {color:#333; text-align:center;}
+    h2.boxheading {letter-spacing:0.1em; color:#333; border-bottom:1px dotted #ccc; margin-bottom:0; padding-bottom:0.25em;}
+    table {border:1px solid #eee; border-collapse:collapse;}
+    th, td {border:1px solid #eee; padding:0.25em;}
+    th {background:#eee;}
+    textarea, #result, #result-src {background:#fff; padding:5px;}
+    textarea {line-height:1.5em;}
+    #mdtext {width:100%; min-height:180em; font-size:100%; font-family:monospace; border:0;}
+    #result {height:90%; overflow:visible; background:#fafafa; font-size:80%;}
+    #result-src {width:auto; min-height:500px; font-family:monospace; overflow:scroll; border:1px solid #ddd; background:#eee;}
+    #result img {width: auto; height:auto;}
+    div.footnotes hr {display:none;}
+    div.footnotes {border-top:dotted #ccc 1px; margin-top:1em;}
+    footer {padding:2em 1em;}
+
+    </style>
+    <script>
+    $(function() {
+        function parse_md() {
+            var result = Markdown($('#mdtext').val());
+            $('#result').html(result);
+            $('#result-src').text(result);
+        }
+        var initial = $('#mdtext').val();
+        var prev = initial;
+        $('#mdtext').keyup(function() {
+            var mdtext = $('#mdtext').val();
+            if(prev != mdtext) {
+                parse_md();
+                prev = mdtext;
+            }
+        });
+        $('#reset').click(function() {
+            $('#mdtext').val(initial);
+            prev = initial;
+            parse_md();
+        });
+        parse_md();
+    });
+    </script>
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+        <header>
+          <!-- <a style="float:right;" id="forkme_banner" href="https://github.com/tanakahisateru/js-markdown-extra">Fork Me on GitHub</a> -->
+
+          <h1 class="mainheading">Markdown Tutorial</h1>
+          
+          <div style="text-align:right; float:left; width:40%; text-align:center;">
+              <p>Edit text in <a href="http://daringfireball.net/projects/markdown/" onclick="window.open(this.href, this.target); return false;" title="Open a new window to read more about Markdown's philosophy.">Markdown</a> syntax in the &larr;left…</p>
+          </div>
+          
+          <div style="float:right; width:40%; text-align:center;">
+              <p>…rendered HTML results are updated live in the right&rarr;</p>
+          </div>
+          
+          <!-- <nav style="clear:both;">
+              <a href="/">Back to Homepage</a>
+          </nav> -->
+        </header>
+
+    <!-- MAIN CONTENT -->
+      <section style="clear:both;">
+          <div style="float:left; width:49%;">
+             
+            <h2 class="boxheading">Markdown</h2>
+            <!-- <button id="reset" style="float:right;">Reset</button> -->
+<textarea id="mdtext">
+Heading Level One
+=================
+
+A paragraph with *emphasized*, **bold** text and 
+[a link](http://www.ippc.int "Link hover text") to a webpage. You can also 
+do reference-style [links][markdowndocs], with the reference 
+in the bottom[^1] of the page.
+
+
+Blockquotes (this is a second-level heading)
+--------------------------------------------
+
+> A blockquotation, said by someone important.
+    >> Nested blockquotation
+
+
+Lists
+-----
+
+- List item
+- List item
+    - Nested list item indented 4 spaces
+        - Nested list item indented 8 spaces
+
+**Lists with multiple paragraphs:**
+
+-   Another list item, but this one has:
+
+    Multiple paragraphs!
+
+-   Yet another list item.
+
+**Ordered list:**
+
+1. Ordered List item
+2. Ordered List item
+    1. Nested ordered list item indented 4 spaces
+    2. List style is controlled by the stylesheet (numbers, letters, etc)
+        3. Indented by 8 spaces
+3. Ordered List item
+
+**Definition list:**
+
+Term
+ : definition
+
+Term
+ : definition can have
+
+    multiple paragraphs.
+
+
+Footnotes
+---------
+
+This footnote will appear at the bottom of the document[^2].
+
+The footnote doesn't have to be a number[^nonumber].
+
+
+Images
+------
+
+![photo description](http://st.ippc.int/static/img/ippc-logo-glyph-web-small.png)
+
+
+Horizontal Rulers
+-----------------
+
+Three or more asterisks:
+
+* * *
+
+
+Line Breaks
+-----------
+
+End a line with two or more spaces:
+
+Roses are red,  
+Violets are blue.
+
+
+Tables (simple tables only)
+------
+
+a | b | c
+-- | -- | --
+one | two | three
+
+**Alignment:**
+
+right | center  | left
+-----:|:----:|:----
+ 0001 | 2    | 003
+   4  | 0005 |  6
+ 
+
+[markdowndocs]: http://daringfireball.com/projects/markdown "Link hover text"
+
+[^1]: Footnotes at the bottom of the page. Click the arrow to go back to the footnote reference link.
+[^2]: Another footnote.
+[^nonumber]: And another footnote.
+
+
+
+</textarea>
+</div>
+
+<div style="float:right; width:49%;">
+<h2 class="boxheading">Rendered HTML</h2>
+<div id="result">
+</div>
+
+<!-- <h2>Raw HTML</h2>
+<pre id="result-src">
+</pre> -->
+</div>
+
+      
+      </section>
+
+    <!-- FOOTER -->
+  <footer style="clear:both;">
+    <p class="copyright"><a href="https://github.com/tanakahisateru/js-markdown-extra">js-markdown-extra</a> maintained by <a href="https://github.com/tanakahisateru">tanakahisateru</a>. Sample markup demo updated by <a href="http://hypertexthero.com">hypertexthero</a>.</p>
+  </footer>
+
+</body>
+</html>

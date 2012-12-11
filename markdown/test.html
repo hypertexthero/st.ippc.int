@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>js-markdown-extra test</title>
+  <script src="js-markdown-extra.js"></script>
+  <style type="text/css">
+  #result table, #result th, #result td { border: 1px solid gray; }
+  #result pre, #result code { background: #EEE; }
+  #result blockquote { background: #FFE; font-style:italic; }
+  </style>
+</head>
+<body>
+  <div style="float:left; width:50%;">
+    <h1>Markdown</h1>
+    <pre id="mdtext" style="border:1px solid gray; margin:1em; padding:1em;">
+Heading Level One
+=================
+
+A paragraph with *emphasized*, **bold** text and 
+[a link](http://www.ippc.int) to a webpage. You can also 
+do reference-style [links][markdowndocs], with the reference 
+in the bottom of the page.
+
+- List item
+- List item
+    - Nested list item indented 4 spaces
+        - Nested list item indented 8 spaces
+
+-   Another list item, but this one has...
+
+    Multiple paragraphs!
+
+-   Yet another list item.
+
+A Second-Level Heading
+----------------------
+
+1. Ordered List item
+2. Ordered List item
+    1. Nested ordered list item indented 4 spaces
+    2. List style is controlled by the stylesheet (numbers, letters, etc)
+        3. Indented by 8 spaces
+3. Ordered List item
+
+> A blockquotation, said by someone important.
+    >> Nested blockquotation
+
+Images
+------
+
+![photo description](http://st.ippc.int/static/img/ippc-logo-glyph-web-small.png)
+
+Horizontal Rulers
+-----------------
+
+Three or more asterisks:
+
+* * *
+
+Line Breaks
+-----------
+
+End a line with two or more spaces:
+
+Roses are red,  
+Violets are blue.
+
+Footnotes
+---------
+
+This footnote will appear at the bottom of the document[^1].
+
+The footnote doesn't have to be a number[^nonumber].
+
+[^1]: Told you it'd be here at the bottom.
+[^nonumber]: See, not a number.
+
+Tables (simple tables only)
+------
+
+a | b | c
+-- | -- | --
+one | two | three
+
+Alignment:
+
+right | center  | left
+-----:|:----:|:----
+ 0001 | 2    | 003
+   4  | 0005 |  6
+
+Definition list
+-----------------
+
+Term
+ : definition
+
+Term
+ : definition
+   is here
+
+Term
+ : definition
+
+   can have multi paragraph
+
+Auto link
+-----------------
+
+&lt;http://foo.com/>  
+&lt;mailto:foo@bar.com>
+
+[markdowndocs]: http://daringfireball.com/projects/markdown
+    </pre>
+  </div>
+
+  <div style="float:right; width:50%;">
+    <h1>Rendered HTML</h1>
+    <div id="result">
+      <script>
+        var mdtextElement = document.getElementById('mdtext');
+        var mdtext = mdtextElement.innerText ? mdtextElement.innerText : mdtextElement.textContent;
+        /*
+        document.write('<pre>' + mdtext
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;') + '</pre>');
+        document.write('<hr/>');*/
+        var html = Markdown(mdtext);
+        // document.write('<pre>' + html
+        //     .replace(/&/g, '&amp;')
+        //     .replace(/</g, '&lt;')
+        //     .replace(/>/g, '&gt;') + '</pre>');
+        // document.write('<hr/>');
+        
+        document.write(html);
+      </script>
+      <div id="rawhtml" style="background:#eee;">
+          <h1>Raw HTML</h1>
+          <script>
+            document.write('<pre>' + html
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;') + '</pre>');
+            document.write('<hr/>');
+          </script>
+      </div>
+    </div>
+  </div>
+  
+  <hr style="clear:both;" />
+</body>
+</html>
