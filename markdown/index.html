@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="Markdown Tutorial with js-markdown-extra : PHP-Markdown-extra compatible Javascript markdown syntax parser">
     <meta name="keywords" content="markdown, preview, javascript, js-markdown-extra" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
     <title>Markdown Tutorial with js-markdown-extra</title>
 
-    <script src="js-markdown-extra.js"></script>
-    <script src="jquery-1.8.2.min.js"></script>
-
-    <style>
+<style>
     body {background:#fafafa; font-family:helvetica, sans-serif; font-size:100%; line-height:1.4em; padding:2em 0; margin:0;}
     a {color:#09F; font-weight:bold;}
     h1.mainheading {color:#333; text-align:center;}
@@ -31,40 +26,15 @@
     div.footnotes hr {display:none;}
     div.footnotes {border-top:dotted #ccc 1px; margin-top:1em;}
     footer {margin-top:2em; padding:0 1em 1em; border-top:double #eee;}
-    
+
     .normal {font-weight:normal;}
     .quiet {color:#999;}
     .clearfix {clear:both;}
+</style>
 
-    </style>
-    <script>
-    $(function() {
-        function parse_md() {
-            var result = Markdown($('#mdtext').val());
-            $('#result').html(result);
-            $('#result-src').text(result);
-        }
-        var initial = $('#mdtext').val();
-        var prev = initial;
-        $('#mdtext').keyup(function() {
-            var mdtext = $('#mdtext').val();
-            if(prev != mdtext) {
-                parse_md();
-                prev = mdtext;
-            }
-        });
-        $('#reset').click(function() {
-            $('#mdtext').val(initial);
-            prev = initial;
-            parse_md();
-        });
-        parse_md();
-    });
-    </script>
+</head>
 
-  </head>
-
-  <body>
+<body>
       <a id="top"></a>
     <!-- HEADER -->
         <header>
@@ -219,5 +189,31 @@ right | center  | left
     <p class="copyright"><a href="https://github.com/tanakahisateru/js-markdown-extra">js-markdown-extra</a> maintained by <a href="https://github.com/tanakahisateru">tanakahisateru</a>. Sample markup demo updated by <a href="http://hypertexthero.com">hypertexthero</a>.</p>
   </footer>
 
+  <script src="jquery-1.8.2.min.js"></script>
+  <script src="js-markdown-extra.js"></script>
+  <script>
+  $(function() {
+      function parse_md() {
+          var result = Markdown($('#mdtext').val());
+          $('#result').html(result);
+          $('#result-src').text(result);
+      }
+      var initial = $('#mdtext').val();
+      var prev = initial;
+      $('#mdtext').keyup(function() {
+          var mdtext = $('#mdtext').val();
+          if(prev != mdtext) {
+              parse_md();
+              prev = mdtext;
+          }
+      });
+      $('#reset').click(function() {
+          $('#mdtext').val(initial);
+          prev = initial;
+          parse_md();
+      });
+      parse_md();
+  });
+  </script>
 </body>
 </html>
