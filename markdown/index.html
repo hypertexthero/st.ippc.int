@@ -14,21 +14,24 @@
     <script src="jquery-1.8.2.min.js"></script>
 
     <style>
-    body {background:#fafafa; font-family:helvetica, sans-serif; font-size:100%; line-height:1.5em; padding:1em;}
+    body {background:#fafafa; font-family:helvetica, sans-serif; font-size:100%; line-height:1.4em; padding:1em;}
     h1.mainheading {color:#333; text-align:center;}
-    h2.boxheading {letter-spacing:0.1em; color:#333; border-bottom:1px dotted #ccc; margin-bottom:0; padding-bottom:0.25em;}
+    h1 {font-size:2em; margin-top:0;}
+    h2.boxheading {letter-spacing:0.1em; color:#333; margin-bottom:0; padding-bottom:0.25em; text-transform:uppercase; font-size:100%;}
     table {border:1px solid #eee; border-collapse:collapse;}
     th, td {border:1px solid #eee; padding:0.25em;}
     th {background:#eee;}
-    textarea, #result, #result-src {background:#fff; padding:5px;}
-    textarea {line-height:1.5em;}
-    #mdtext {width:100%; min-height:180em; font-size:100%; font-family:monospace; border:0;}
-    #result {height:90%; overflow:visible; background:#fafafa; font-size:80%;}
-    #result-src {width:auto; min-height:500px; font-family:monospace; overflow:scroll; border:1px solid #ddd; background:#eee;}
+    textarea {line-height:1.4em; background:#fff;}
+    #mdtext {width:100%; min-height:180em; font-size:100%; font-family:monospace; border:0; border-top:1px dotted #ddd; border-right:1px dotted #ddd;  border-bottom:1px dotted #ddd; padding:10px;}
+    #result {height:100%; overflow:visible; background:#fafafa; font-size:80%; border-top:1px dotted #ddd; padding:10px; margin:0 0 0 21px}
+    #result-src {width:auto; min-height:500px; font-family:monospace; overflow:scroll;  background:#eee;}
     #result img {width: auto; height:auto;}
     div.footnotes hr {display:none;}
     div.footnotes {border-top:dotted #ccc 1px; margin-top:1em;}
     footer {padding:2em 1em;}
+    
+    .normal {font-weight:normal;}
+    .quiet {color:#999;}
 
     </style>
     <script>
@@ -81,12 +84,12 @@
 
     <!-- MAIN CONTENT -->
       <section style="clear:both;">
-          <div style="float:left; width:49%;">
+          <div style="float:left; width:50%;">
              
-            <h2 class="boxheading">Markdown</h2>
+            <h2 class="boxheading">Markdown <small class="normal quiet">(what you write)</small></h2>
             <!-- <button id="reset" style="float:right;">Reset</button> -->
 <textarea id="mdtext">
-Heading Level One
+First-Level Heading
 =================
 
 A paragraph with *emphasized*, **bold** text and 
@@ -149,7 +152,9 @@ The footnote doesn't have to be a number[^nonumber].
 Images
 ------
 
-![photo description](http://st.ippc.int/static/img/ippc-logo-glyph-web-small.png)
+The syntax for including images — `![description](http://imageurl.tld)` — is the same as for links, but starting with an exclamation sign. The image description in the square brackets is optional, but recommended:
+
+![optional image description](http://st.ippc.int/static/img/ippc-logo-glyph-web-small.png)
 
 
 Horizontal Rulers
@@ -195,8 +200,8 @@ right | center  | left
 </textarea>
 </div>
 
-<div style="float:right; width:49%;">
-<h2 class="boxheading">Rendered HTML</h2>
+<div style="float:right; width:50%;">
+<h2 class="boxheading" style="margin-bottom:1px; padding-left:20px;">Rendered HTML <small class="normal quiet">(what appears in the browser)</small></h2>
 <div id="result">
 </div>
 
